@@ -27,9 +27,15 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Dockerize') {
             steps {
-                bat "mvn jar:jar deploy:deploy -P${params.SPRING_PROFILE}"
+                bat "docker build -f Dockerfile -t football-standing ."
+            }
+        }
+
+        stage("Deploy") {
+            steps {
+                bat "docker run -p 8080:8080 -e "SPRING_PROFILES_ACTIVE=${params.SPRING_PROFILE}"
             }
         }
     }
