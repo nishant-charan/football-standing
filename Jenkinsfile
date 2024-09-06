@@ -35,7 +35,7 @@ pipeline {
 
         stage("Deploy") {
             steps {
-                bat "docker run -p 8080:8080 -e "SPRING_PROFILES_ACTIVE=${params.SPRING_PROFILE}"
+                bat "docker run -p 8080:8080 -e \"SPRING_PROFILES_ACTIVE=${params.SPRING_PROFILE}\""
             }
         }
     }
