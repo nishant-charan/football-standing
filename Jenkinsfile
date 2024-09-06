@@ -29,7 +29,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                bat "mvn jar:jar deploy:deploy -P%SPRING_PROFILE%"
+                bat "mvn jar:jar deploy:deploy -P${params.SPRING_PROFILE}"
             }
         }
     }
